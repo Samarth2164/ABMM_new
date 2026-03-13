@@ -64,13 +64,19 @@ router.get('/join', (req, res) => {
 
 const { google } = require('googleapis');
 const path = require('path');
-const keys = require('../google-credentials.json');
 const nodemailer = require('nodemailer');
 
-const auth = new google.auth.GoogleAuth({
-  keyFile: path.join(__dirname, '../google-credentials.json'),
+let authConfig = {
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-});
+};
+
+if (process.env.GOOGLE_CREDENTIALS) {
+  authConfig.credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+} else {
+  authConfig.keyFile = path.join(__dirname, '../google-credentials.json');
+}
+
+const auth = new google.auth.GoogleAuth(authConfig);
 
 async function appendToSheet(data) {
   try {
