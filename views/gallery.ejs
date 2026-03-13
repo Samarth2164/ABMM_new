@@ -16,7 +16,7 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="/" class="nav-logo">
-        <div class="nav-logo-icon">ABM</div>
+        <img src="/images/logo.jpg" alt="ABM Logo" class="nav-logo-icon" style="object-fit: contain;">
         <div class="nav-logo-text">
           <span class="logo-main">Amba Bhavani</span>
           <span class="logo-sub">Marata Mandali</span>
@@ -41,7 +41,7 @@
   </nav>
 
   <div class="page-hero">
-    <div class="section-label">Our Memories</div>
+    <div class="section-label" style="color: #fdfdfd;">Our Memories</div>
     <h1 class="page-title">Photo Gallery</h1>
     <p class="page-desc">Moments from our events, celebrations, and community gatherings over the years.</p>
   </div>
@@ -81,18 +81,9 @@
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-logo">
-        <div class="nav-logo-icon small">ABM</div>
-        <span>Amba Bhavani Marata Mandali</span>
-      </div>
-      <p class="footer-tagline">Jai Bhavani &nbsp;·&nbsp; Jai Shivaji </p>
-      <p class="footer-copy">© 2026 Amba Bhavani Marata Mandali. All rights reserved.</p>
-    </div>
-  </footer>
+  <%- include('partials/footer') %>
 
-  <script src="/js/main.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>

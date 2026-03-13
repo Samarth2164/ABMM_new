@@ -43,7 +43,7 @@ const committee = [
 
 const gallery = [
   { link: 'https://photos.app.goo.gl/Z6ssoUpGpaKAy5za8', coverUrl: '/images/committee/cover.JPG', label: 'Sporty dayout 2026', bg: '#ea580c' },
-  { link: 'https://photos.app.goo.gl/Texa3VHuCx1PekFF9', coverUrl: '/images/committee/cover2.JPG', label: 'Satyanarayana kathe 2025', bg: '#f97316' }
+  { link: 'https://photos.app.goo.gl/Texa3VHuCx1PekFF9', coverUrl: '/images/committee/cover2.JPG', label: 'Satyanarayana Pooja 2025', bg: '#f97316' }
 ];
 
 router.get('/', (req, res) => {
@@ -84,7 +84,7 @@ async function appendToSheet(data) {
     const gsapi = google.sheets({ version: 'v4', auth: authClient });
     const opt = {
       spreadsheetId: '1qjSyABncWTVC_2QY4JW7IV05d_OfnACKjHvka7lQLpY',
-      range: 'Sheet1!A:D',
+      range: 'Sheet1!A:F',
       valueInputOption: 'USER_ENTERED',
       resource: { values: [data] }
     };
@@ -126,13 +126,13 @@ async function sendEmail(name, email) {
 }
 
 router.post('/join', async (req, res) => {
-  const { name, phone, email, message } = req.body;
+  const { name, phone, email, address, message } = req.body;
   const timestamp = new Date().toLocaleString();
 
-  console.log(`New volunteer: ${name} | ${phone} | ${email}`);
+  console.log(`New volunteer: ${name} | ${phone} | ${email} | ${address}`);
 
   // Save to Google Sheet in the background (prevent UI hang)
-  appendToSheet([timestamp, name, phone, email, message || '']).catch(err => console.error(err));
+  appendToSheet([timestamp, name, phone, email, address, message || '']).catch(err => console.error(err));
 
   // Send Automated Email in the background
   sendEmail(name, email).catch(err => console.error(err));
