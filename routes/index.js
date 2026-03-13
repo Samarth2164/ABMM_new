@@ -35,25 +35,15 @@ const updates = [
   { color: '#ef4444', title: 'Annual general meeting — March 5', description: 'All members are requested to attend the AGM on March 5, 2026 at 5:00 PM. Agenda includes budget review and committee elections.', time: '3 weeks ago' }
 ];
 
-const committee = [,
-  { initials: 'rao', name: 'hemaraja', role: 'President', bg: '#ede9fe', color: '#5b21b6' },
-  { initials: 'PM', name: 'Priya More', role: 'Vice President', bg: '#fef3c7', color: '#92400e' },
-  { initials: 'SK', name: 'Suresh Kamble', role: 'Secretary', bg: '#d1fae5', color: '#065f46' },
-  { initials: 'AP', name: 'Anita Patil', role: 'Treasurer', bg: '#fee2e2', color: '#991b1b' },
-  { initials: 'VB', name: 'Vijay Bhosale', role: 'Cultural Head', bg: '#e0f2fe', color: '#075985' },
-  { initials: 'NJ', name: 'Nilesh Jadhav', role: 'Youth Wing Head', bg: '#fce7f3', color: '#9d174d' }
+const committee = [
+  { initials: 'hr', name: 'Hemaraja Rao', role: 'President', bg: '#ede9fe', color: '#5b21b6', image: '/images/committee/president.jpeg' },
+  { initials: 'PM', name: 'Kavita Bekal', role: 'Events', bg: '#fef3c7', color: '#92400e', image: '/images/committee/events.jpg' },
+  { initials: 'SK', name: 'Abhilash Sindhya', role: 'Secretary', bg: '#d1fae5', color: '#065f46', image: '/images/committee/secretary.jpg' }
 ];
 
 const gallery = [
-  { link: 'https://photos.google.com/', coverUrl: 'https://images.unsplash.com/photo-1604928148902-60195d24d081?q=80&w=600&auto=format&fit=crop', emoji: '🎊', label: 'Shivaji Jayanti 2025', bg: '#2d1054' },
-  { link: '', coverUrl: '', emoji: '🙏', label: 'Amba Puja 2025', bg: '#3d1a6e' },
-  { link: '', coverUrl: '', emoji: '🏆', label: 'Krida Mahotsav', bg: '#1a0a2e' },
-  { link: '', coverUrl: '', emoji: '🩸', label: 'Blood Donation Camp', bg: '#4a2080' },
-  { link: '', coverUrl: '', emoji: '🎶', label: 'Bhajan Sandhya', bg: '#2d1054' },
-  { link: '', coverUrl: '', emoji: '🌺', label: 'Community Gatherings', bg: '#1a0a2e' },
-  { link: '', coverUrl: '', emoji: '🎭', label: 'Cultural Program', bg: '#3d1a6e' },
-  { link: '', coverUrl: '', emoji: '🤝', label: 'Welfare Drive', bg: '#2d1054' },
-  { link: '', coverUrl: '', emoji: '🥁', label: 'Dhol-Tasha Festival', bg: '#4a2080' }
+  { link: 'https://photos.app.goo.gl/Z6ssoUpGpaKAy5za8', coverUrl: '/images/committee/cover.JPG', label: 'Sporty dayout 2026', bg: '#ea580c' },
+  { link: 'https://photos.app.goo.gl/Texa3VHuCx1PekFF9', coverUrl: '/images/committee/cover2.JPG', label: 'Satyanarayana kathe 2025', bg: '#f97316' }
 ];
 
 router.get('/', (req, res) => {
@@ -72,9 +62,75 @@ router.get('/join', (req, res) => {
   res.render('join', { page: 'join', success: false, name: '' });
 });
 
-router.post('/join', (req, res) => {
-  const { name, phone, email } = req.body;
-  console.log(`New member: ${name} | ${phone} | ${email}`);
+const { google } = require('googleapis');
+const path = require('path');
+const keys = require('../google-credentials.json');
+const nodemailer = require('nodemailer');
+
+const auth = new google.auth.GoogleAuth({
+  keyFile: path.join(__dirname, '../google-credentials.json'),
+  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+});
+
+async function appendToSheet(data) {
+  try {
+    const authClient = await auth.getClient();
+    const gsapi = google.sheets({ version: 'v4', auth: authClient });
+    const opt = {
+      spreadsheetId: '1qjSyABncWTVC_2QY4JW7IV05d_OfnACKjHvka7lQLpY',
+      range: 'Sheet1!A:D',
+      valueInputOption: 'USER_ENTERED',
+      resource: { values: [data] }
+    };
+    await gsapi.spreadsheets.values.append(opt);
+    console.log("Appended to Google Sheet successfully");
+    return true;
+  } catch (e) {
+    console.error('Google Sheets Error:', e);
+    return false;
+  }
+}
+
+async function sendEmail(name, email) {
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    console.log("Email credentials not set in .env! Skipping email.");
+    return;
+  }
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
+  });
+
+  let mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: 'Welcome to Amba Bhavani Marata Mandali Volunteering!',
+    text: `Namaskara ${name},\n\nThank you for registering to volunteer for Amba Bhavani Marata Mandali events! We have received your submission and will contact you when volunteer opportunities arise.\n\nJai Bhavani! Jai Shivaji!\n- ABMM Team`
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully");
+  } catch (e) {
+    console.error("Email sending error:", e);
+  }
+}
+
+router.post('/join', async (req, res) => {
+  const { name, phone, email, message } = req.body;
+  const timestamp = new Date().toLocaleString();
+
+  console.log(`New volunteer: ${name} | ${phone} | ${email}`);
+
+  // Save to Google Sheet: [Timestamp, Name, Phone, Email, Message]
+  await appendToSheet([timestamp, name, phone, email, message || '']);
+
+  // Send Automated Email
+  await sendEmail(name, email);
+
   res.render('join', { page: 'join', success: true, name });
 });
 

@@ -26,7 +26,8 @@
         <a href="/">Home</a>
         <a href="/gallery" class="active">Gallery</a>
         <a href="/committee">Committee</a>
-        <a href="/join" class="nav-join">Join Us</a>
+        <a href="/join">Volunteer</a>
+        <a href="https://chat.whatsapp.com/YOUR_INVITE_LINK" class="nav-join" target="_blank">Join WhatsApp</a>
       </div>
       <button class="hamburger" id="hamburger">&#9776;</button>
     </div>
@@ -34,7 +35,8 @@
       <a href="/">Home</a>
       <a href="/gallery">Gallery</a>
       <a href="/committee">Committee</a>
-      <a href="/join">Join Us</a>
+      <a href="/join">Volunteer</a>
+      <a href="https://chat.whatsapp.com/YOUR_INVITE_LINK" target="_blank">Join WhatsApp</a>
     </div>
   </nav>
 
@@ -52,8 +54,8 @@
             <% const targetAttr=item.link ? 'target="_blank" rel="noopener"' : '' ; %>
               <% const hrefAttr=item.link ? `href="${item.link}" ` : '' ; %>
                 <<%= Tag %>
-                  <%= hrefAttr %>
-                    <%= targetAttr %> class="gallery-card" style="<%- item.coverUrl ? `background:
+                  <%- hrefAttr %>
+                    <%- targetAttr %> class="gallery-card" style="<%- item.coverUrl ? `background:
                         url('${item.coverUrl}') center/cover;` : `background: ${item.bg};` %>">
                         <% if (!item.coverUrl) { %>
                           <div class="gallery-emoji">
@@ -68,13 +70,14 @@
                               <%= item.label %>
                             </div>
                             <% } %>
-                              <div class="gallery-overlay"
-                                style="<%= item.coverUrl ? 'z-index: 1; background: rgba(0,0,0,0.4);' : '' %>">
-                                <span>View Photos</span></div>
+                              <div class="gallery-overlay" <%- item.coverUrl
+                                ? 'style="z-index: 1; background: rgba(0,0,0,0.4);"' : '' %>>
+                                <span>View Photos</span>
+                              </div>
                 </<%= Tag %>>
                 <% }) %>
       </div>
-      <p class="gallery-note">📸 Real photos coming soon — contact us to share your event photos!</p>
+      <p class="gallery-note">📸 Event photos will be updated soon. Stay tuned!!!</p>
     </div>
   </section>
 
@@ -84,7 +87,7 @@
         <div class="nav-logo-icon small">ABM</div>
         <span>Amba Bhavani Marata Mandali</span>
       </div>
-      <p class="footer-tagline">Jai Bhavani &nbsp;·&nbsp; Jai Shivaji &nbsp;·&nbsp; Jai Maharashtra</p>
+      <p class="footer-tagline">Jai Bhavani &nbsp;·&nbsp; Jai Shivaji </p>
       <p class="footer-copy">© 2026 Amba Bhavani Marata Mandali. All rights reserved.</p>
     </div>
   </footer>

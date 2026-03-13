@@ -27,7 +27,8 @@
         <a href="/" class="active">Home</a>
         <a href="/gallery">Gallery</a>
         <a href="/committee">Committee</a>
-        <a href="/join" class="nav-join">Join Us</a>
+        <a href="/join">Volunteer</a>
+        <a href="https://chat.whatsapp.com/YOUR_INVITE_LINK" class="nav-join" target="_blank">Join WhatsApp</a>
       </div>
       <button class="hamburger" id="hamburger">&#9776;</button>
     </div>
@@ -35,28 +36,30 @@
       <a href="/">Home</a>
       <a href="/gallery">Gallery</a>
       <a href="/committee">Committee</a>
-      <a href="/join">Join Us</a>
+      <a href="/join">Volunteer</a>
+      <a href="https://chat.whatsapp.com/YOUR_INVITE_LINK" target="_blank">Join WhatsApp</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-tag">Est. Community Organization · Maharashtra</div>
+      <div class="hero-tag">Est. Community Organization · BENGALURU</div>
       <h1 class="hero-title">Amba Bhavani<br />Marata Mandali</h1>
       <p class="hero-sub">Celebrating Culture, Unity &amp; Heritage</p>
       <p class="hero-desc">A proud community organization dedicated to preserving Maratha culture, celebrating our
         heritage, and serving our people with the spirit of Chhatrapati Shivaji Maharaj.</p>
       <div class="hero-btns">
-        <a href="/join" class="btn-primary">Join Our Community</a>
+        <a href="https://chat.whatsapp.com/YOUR_INVITE_LINK" class="btn-primary" target="_blank">Join WhatsApp Group</a>
         <a href="#events" class="btn-secondary">Upcoming Events</a>
       </div>
     </div>
     <div class="hero-emblem">
       <div class="emblem-ring">
         <div class="emblem-inner">
-          <span class="emblem-symbol">⚔️</span>
-          <span class="emblem-text">Swarajya</span>
+          <img src="https://voteforshivajijayanti.com/wp-content/uploads/2024/06/Chhatrapati-Shivaji-Maharaj-1.jpg"
+            alt="Chhatrapati Shivaji Maharaj"
+            style="width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 50%;">
         </div>
       </div>
     </div>
@@ -210,7 +213,7 @@
       <div class="updates-list">
         <% updates.forEach(update=> { %>
           <div class="update-item">
-            <div class="update-dot" style="background:<%= update.color %>;"></div>
+            <div class="update-dot" <%- `style="background-color: ${update.color};" ` %>></div>
             <div>
               <h4>
                 <%= update.title %>
@@ -235,7 +238,7 @@
       <p style="color:rgba(255,255,255,0.7);max-width:500px;margin:0 auto 28px;line-height:1.7;">Join Amba Bhavani
         Marata Mandali and be part of a proud, united community. Together we celebrate our heritage and serve our
         people.</p>
-      <a href="/join" class="btn-primary large">Join Us Today</a>
+      <a href="/join" class="btn-primary large">Volunteer With Us</a>
     </div>
   </section>
 
@@ -247,6 +250,19 @@
         <span>Amba Bhavani Marata Mandali</span>
       </div>
       <p class="footer-tagline">Jai Bhavani &nbsp;·&nbsp; Jai Shivaji </p>
+      <div style="margin: 16px 0;">
+        <a href="https://www.instagram.com/abmm_bengaluru?utm_source=qr&igsh=MTRjZnJ1emk3Mm1oNg==" target="_blank"
+          rel="noopener noreferrer"
+          style="display:inline-flex;align-items:center;gap:8px;color:#f5c842;text-decoration:none;font-weight:500;padding:8px 16px;border:1px solid rgba(245,200,66,0.3);border-radius:24px;transition:all 0.3s ease;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          Follow us on Instagram
+        </a>
+      </div>
       <p class="footer-copy">© 2026 Amba Bhavani Marata Mandali. All rights reserved.</p>
     </div>
   </footer>
