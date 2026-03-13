@@ -131,11 +131,11 @@ router.post('/join', async (req, res) => {
 
   console.log(`New volunteer: ${name} | ${phone} | ${email}`);
 
-  // Save to Google Sheet: [Timestamp, Name, Phone, Email, Message]
-  await appendToSheet([timestamp, name, phone, email, message || '']);
+  // Save to Google Sheet in the background (prevent UI hang)
+  appendToSheet([timestamp, name, phone, email, message || '']).catch(err => console.error(err));
 
-  // Send Automated Email
-  await sendEmail(name, email);
+  // Send Automated Email in the background
+  sendEmail(name, email).catch(err => console.error(err));
 
   res.render('join', { page: 'join', success: true, name });
 });
