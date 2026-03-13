@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Committee – Amba Bhavani Marata Mandali</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Hind:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-icon">ABM</div>
+        <div class="nav-logo-text">
+          <span class="logo-main">Amba Bhavani</span>
+          <span class="logo-sub">Marata Mandali</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/committee" class="active">Committee</a>
+        <a href="/join" class="nav-join">Join Us</a>
+      </div>
+      <button class="hamburger" id="hamburger">&#9776;</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/">Home</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/committee">Committee</a>
+      <a href="/join">Join Us</a>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="section-label">Leadership</div>
+    <h1 class="page-title">Our Committee</h1>
+    <p class="page-desc">Dedicated leaders serving the Amba Bhavani Marata Mandali community with pride and devotion.
+    </p>
+  </div>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="committee-grid">
+        <% committee.forEach(member=> { %>
+          <div class="committee-card">
+            <div class="avatar" style="background:<%= member.bg %>; color:<%= member.color %>">
+              <%= member.initials %>
+            </div>
+            <h3>
+              <%= member.name %>
+            </h3>
+            <p class="member-role">
+              <%= member.role %>
+            </p>
+          </div>
+          <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="section-inner" style="text-align:center;">
+      <h2 class="section-title gold">Want to serve the community?</h2>
+      <p style="color:rgba(255,255,255,0.7);max-width:480px;margin:0 auto 28px;line-height:1.7;">Join us as a volunteer
+        or active member and contribute to the growth of our mandali.</p>
+      <a href="/join" class="btn-primary large">Join the Team</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="nav-logo-icon small">ABM</div>
+        <span>Amba Bhavani Marata Mandali</span>
+      </div>
+      <p class="footer-tagline">Jai Bhavani &nbsp;·&nbsp; Jai Shivaji </p>
+      <p class="footer-copy">© 2026 Amba Bhavani Marata Mandali. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

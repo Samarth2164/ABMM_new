@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join Us – Amba Bhavani Marata Mandali</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Hind:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-icon">ABM</div>
+        <div class="nav-logo-text">
+          <span class="logo-main">Amba Bhavani</span>
+          <span class="logo-sub">Marata Mandali</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/committee">Committee</a>
+        <a href="/join" class="nav-join active">Join Us</a>
+      </div>
+      <button class="hamburger" id="hamburger">&#9776;</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/">Home</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/committee">Committee</a>
+      <a href="/join">Join Us</a>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="section-label">Membership</div>
+    <h1 class="page-title">Join Our Community</h1>
+    <p class="page-desc">Become a proud member of Amba Bhavani Marata Mandali and be part of something bigger.</p>
+  </div>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="join-layout">
+
+        <div class="join-benefits">
+          <h2>Why Join Us?</h2>
+          <ul class="benefits-list">
+            <li><span class="benefit-icon">🎊</span>
+              <div><strong>Cultural Events</strong>
+                <p>Access to all festivals, celebrations, and cultural programs throughout the year.</p>
+              </div>
+            </li>
+            <li><span class="benefit-icon">🤝</span>
+              <div><strong>Community Support</strong>
+                <p>Our welfare fund helps members during medical emergencies and difficult times.</p>
+              </div>
+            </li>
+            <li><span class="benefit-icon">🏆</span>
+              <div><strong>Sports &amp; Youth Programs</strong>
+                <p>Participate in Krida Mahotsav and youth development activities.</p>
+              </div>
+            </li>
+            <li><span class="benefit-icon">📢</span>
+              <div><strong>Stay Updated</strong>
+                <p>Get first-hand news, announcements, and updates from the Mandali.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="join-form-wrap">
+          <% if (success) { %>
+            <div class="success-box">
+              <div class="success-icon">✅</div>
+              <h3>Welcome, <%= name %>!</h3>
+              <p>Your membership request has been received. Our committee will contact you shortly.</p>
+              <a href="/" class="btn-primary" style="display:inline-block;margin-top:16px;">Back to Home</a>
+            </div>
+            <% } else { %>
+              <form class="join-form" action="/join" method="POST">
+                <h2>Membership Form</h2>
+                <p class="form-note">Free membership for all community members</p>
+                <div class="form-group">
+                  <label for="name">Full Name *</label>
+                  <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number *</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" name="email" placeholder="your@email.com" />
+                </div>
+                <div class="form-group">
+                  <label for="address">Area / Locality *</label>
+                  <input type="text" id="address" name="address" placeholder="Your area or locality" required />
+                </div>
+                <div class="form-group">
+                  <label for="message">Why do you want to join?</label>
+                  <textarea id="message" name="message" rows="3"
+                    placeholder="Tell us a bit about yourself..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary large" style="width:100%;">Submit Application</button>
+              </form>
+              <% } %>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="nav-logo-icon small">ABM</div>
+        <span>Amba Bhavani Marata Mandali</span>
+      </div>
+      <p class="footer-tagline">Jai Bhavani &nbsp;·&nbsp; Jai Shivaji</p>
+      <p class="footer-copy">© 2026 Amba Bhavani Marata Mandali. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

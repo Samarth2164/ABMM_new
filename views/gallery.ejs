@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery – Amba Bhavani Marata Mandali</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Hind:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-icon">ABM</div>
+        <div class="nav-logo-text">
+          <span class="logo-main">Amba Bhavani</span>
+          <span class="logo-sub">Marata Mandali</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/gallery" class="active">Gallery</a>
+        <a href="/committee">Committee</a>
+        <a href="/join" class="nav-join">Join Us</a>
+      </div>
+      <button class="hamburger" id="hamburger">&#9776;</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/">Home</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/committee">Committee</a>
+      <a href="/join">Join Us</a>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="section-label">Our Memories</div>
+    <h1 class="page-title">Photo Gallery</h1>
+    <p class="page-desc">Moments from our events, celebrations, and community gatherings over the years.</p>
+  </div>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="gallery-grid">
+        <% gallery.forEach((item, i)=> { %>
+          <% const Tag=item.link ? 'a' : 'div' ; %>
+            <% const targetAttr=item.link ? 'target="_blank" rel="noopener"' : '' ; %>
+              <% const hrefAttr=item.link ? `href="${item.link}" ` : '' ; %>
+                <<%= Tag %>
+                  <%= hrefAttr %>
+                    <%= targetAttr %> class="gallery-card" style="<%- item.coverUrl ? `background:
+                        url('${item.coverUrl}') center/cover;` : `background: ${item.bg};` %>">
+                        <% if (!item.coverUrl) { %>
+                          <div class="gallery-emoji">
+                            <%= item.emoji %>
+                          </div>
+                          <div class="gallery-label">
+                            <%= item.label %>
+                          </div>
+                          <% } else { %>
+                            <div class="gallery-label"
+                              style="position: absolute; bottom: 12px; background: rgba(0,0,0,0.7); padding: 4px 12px; border-radius: 6px; z-index: 2; font-weight: 500;">
+                              <%= item.label %>
+                            </div>
+                            <% } %>
+                              <div class="gallery-overlay"
+                                style="<%= item.coverUrl ? 'z-index: 1; background: rgba(0,0,0,0.4);' : '' %>">
+                                <span>View Photos</span></div>
+                </<%= Tag %>>
+                <% }) %>
+      </div>
+      <p class="gallery-note">📸 Real photos coming soon — contact us to share your event photos!</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="nav-logo-icon small">ABM</div>
+        <span>Amba Bhavani Marata Mandali</span>
+      </div>
+      <p class="footer-tagline">Jai Bhavani &nbsp;·&nbsp; Jai Shivaji &nbsp;·&nbsp; Jai Maharashtra</p>
+      <p class="footer-copy">© 2026 Amba Bhavani Marata Mandali. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+
+</html>
