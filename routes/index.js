@@ -35,8 +35,8 @@ const updates = [
   { color: '#ef4444', title: 'Annual general meeting — March 5', description: 'All members are requested to attend the AGM on March 5, 2026 at 5:00 PM. Agenda includes budget review and committee elections.', time: '3 weeks ago' }
 ];
 
-const committee = [
-  { initials: 'RS', name: 'Rajendra Shinde', role: 'President', bg: '#ede9fe', color: '#5b21b6' },
+const committee = [,
+  { initials: 'rao', name: 'hemaraja', role: 'President', bg: '#ede9fe', color: '#5b21b6' },
   { initials: 'PM', name: 'Priya More', role: 'Vice President', bg: '#fef3c7', color: '#92400e' },
   { initials: 'SK', name: 'Suresh Kamble', role: 'Secretary', bg: '#d1fae5', color: '#065f46' },
   { initials: 'AP', name: 'Anita Patil', role: 'Treasurer', bg: '#fee2e2', color: '#991b1b' },
